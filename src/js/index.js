@@ -19,16 +19,18 @@ const controlSearch = async () => {
     if (query) {
         // 2. New search object and add to state
         state.search = new Search(query);
-        // 3. Prepare UI for results
         try {
+            // 3. Prepare UI for results
+            searchView.clearInput();
+            searchView.clearResults();
             // 4. Search for recipes
             await state.search.getResults();
     
             // 5. Render results on UI
             // console.log(state.search.result);
-            const result = state.search.result;
-            //console.log(result);
-            searchView.renderResults(result);
+            //const result = state.search.result;
+            //console.log(state.search.result);
+            searchView.renderResults(state.search.result);
         } catch (err) {
             alert('Something wrong with the search...');
             clearLoader();
