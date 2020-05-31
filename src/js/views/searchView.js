@@ -15,8 +15,8 @@ const renderRecipe = repice => {
                 <img src="${repice.image_url}" alt="${repice.title}">
             </figure>
             <div class="results__data">
-                <h4 class="${repice.title}">Pasta with Tomato ...</h4>
-                <p class="${repice.publisher}">The Pioneer Woman</p>
+                <h4 class="results__name">${repice.title}</h4>
+                <p class="results__author">${repice.publisher}</p>
             </div>
         </a>
         </li>    
