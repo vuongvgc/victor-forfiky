@@ -41,7 +41,8 @@ const renderRecipe = repice => {
     `;
     elements.searchResList.insertAdjacentHTML('beforeend',markUp);
 }
-export const renderResults = repices => {
-    //console.log(repices);
-    repices.forEach(renderRecipe);
+export const renderResults = (repices, page = 2, resPerPage = 10) => {
+    const start = (page -1) * resPerPage;
+    const end = page * resPerPage;
+    repices.slice(start,end).forEach(renderRecipe);
 }   
