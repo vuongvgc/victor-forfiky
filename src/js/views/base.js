@@ -9,7 +9,8 @@ export const elements = {
     //3. Render UI
     searchResList: document.querySelector('.results__list'),
     //4. Renderreload
-    searchLoader: document.querySelector('.results')
+    searchLoader: document.querySelector('.results'),
+    searchResPage: document.querySelector('.results__pages')
 }
 export const renderLoader = parent => {
     const loader = `

@@ -41,8 +41,44 @@ const renderRecipe = repice => {
     `;
     elements.searchResList.insertAdjacentHTML('beforeend',markUp);
 }
+// btn pre next
+const creatButton = (page, type) => 
+`
+    <button class="btn-inline results__btn--${type}" data-goto ="${type === 'prev' ? page - 1 : page + 1}">
+        <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+        <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+    </button>
+`
+;
+const renderButtons = (page, numResults, resPerPage) => {
+    const pages = Math.ceil(numResults/resPerPage);
+    let button; // block 
+    if (page === 1 && pages > 1){
+        // just btn next
+       button = creatButton(page,'next');
+    }
+    else if(page < pages) {
+        // both btn next pre
+        button = `
+        ${creatButton(page,'prev')}
+        ${creatButton(page,'next')}
+        `;
+    }
+    else if( page === pages && pages > 1){
+        // just btn pre
+       button = creatButton(page,'prev');
+    }
+    elements.searchResPage.insertAdjacentHTML('afterbegin',button);
+       
+};
 export const renderResults = (repices, page = 2, resPerPage = 10) => {
-    const start = (page -1) * resPerPage;
+    const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
     repices.slice(start,end).forEach(renderRecipe);
-}   
+    renderButtons(page, repices.length, resPerPage);
+    
+
+    
+} 

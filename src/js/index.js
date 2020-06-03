@@ -1,5 +1,5 @@
 import Search from './models/Search';
-import {elements, renderLoader, clearLoader} from './views/base';
+import {elements, renderLoader, clearLoader, renderResults} from './views/base';
 import * as searchView from './views/searchView';
 /** Global state of the app
  * - Search object
@@ -33,6 +33,7 @@ const controlSearch = async () => {
             //const result = state.search.result;
             //console.log(state.search.result);
             searchView.renderResults(state.search.result);
+            
         } catch (err) {
             alert('Something wrong with the search...');
             console.log(err);
