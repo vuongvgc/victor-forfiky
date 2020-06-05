@@ -1,5 +1,5 @@
 import Search from './models/Search';
-import {elements, renderLoader, clearLoader, renderResults} from './views/base';
+import {elements, renderLoader, clearLoader, renderResults, searchResPage} from './views/base';
 import * as searchView from './views/searchView';
 /** Global state of the app
  * - Search object
@@ -44,4 +44,12 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 })
-
+elements.searchResPage.addEventListener('click',e =>{
+    const btn = e.target.closest('.btn-inline');
+    if(btn) {
+        searchView.clearResults();
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.renderResults(state.search.result, goToPage);
+       // console.log(goToPage);
+    }
+})

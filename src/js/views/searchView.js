@@ -5,6 +5,7 @@ export const clearInput = () => {
 }
 export const clearResults = () => {
     elements.searchResList.innerHTML = ' ';
+    elements.searchResPage.innerHTML = ' ';
 }
 /*
 1. split word and delete ' '
@@ -73,12 +74,9 @@ const renderButtons = (page, numResults, resPerPage) => {
     elements.searchResPage.insertAdjacentHTML('afterbegin',button);
        
 };
-export const renderResults = (repices, page = 5, resPerPage = 5) => {
+export const renderResults = (repices, page = 1, resPerPage = 5) => {
     const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
     repices.slice(start,end).forEach(renderRecipe);
-    renderButtons(page, repices.length, resPerPage);
-    
-
-    
+    renderButtons(page, repices.length, resPerPage); 
 } 
