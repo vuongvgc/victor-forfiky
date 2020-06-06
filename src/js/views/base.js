@@ -8,6 +8,7 @@ export const elements = {
     searchInput: document.querySelector('.search__field'),
     //3. Render UI
     searchResList: document.querySelector('.results__list'),
+    searchResLink: document.querySelector('.results__link'),
     //4. Renderreload
     searchLoader: document.querySelector('.results'),
     searchResPage: document.querySelector('.results__pages')

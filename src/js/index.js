@@ -1,6 +1,6 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
-import {elements, renderLoader, clearLoader, renderResults, searchResPage} from './views/base';
+import {elements, renderLoader, clearLoader, renderResults, searchResPage, searchResLink} from './views/base';
 import * as searchView from './views/searchView';
 /** Global state of the app
  * - Search object
@@ -59,5 +59,27 @@ elements.searchResPage.addEventListener('click',e =>{
 /** 
  * Recipe CONTROLLER
  */
+/*
 const r = new Recipe(47746);
-r.getRecipe()
+r.getRecipe();
+console.log(r);
+*/
+const controlRepice = async () => {
+    const id = window.location.hash.replace('#', '');
+    //id = 47746;
+    if (id) {
+        //1. prepare UI for change
+
+        //2. creat new repice object 
+            state.Recipe = new Recipe(id);
+        //3. get recipe data
+            await state.Recipe.getRecipe();
+        //4. Calc Serving nanad time
+            state.Recipe.calcTime();
+            state.Recipe.calcServings();
+
+        //5. Render Recipe
+            console.log(state.Recipe);
+    }
+};
+window.addEventListener('hashchange', controlRepice);
