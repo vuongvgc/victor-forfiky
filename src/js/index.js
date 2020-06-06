@@ -73,6 +73,7 @@ const controlRepice = async () => {
         //2. creat new repice object 
             state.Recipe = new Recipe(id);
         //3. get recipe data
+        try {
             await state.Recipe.getRecipe();
         //4. Calc Serving nanad time
             state.Recipe.calcTime();
@@ -80,6 +81,13 @@ const controlRepice = async () => {
 
         //5. Render Recipe
             console.log(state.Recipe);
+        }
+        catch(err){
+            alert(`It wrong somthing ${err}`);
+        }
+            
     }
 };
-window.addEventListener('hashchange', controlRepice);
+//window.addEventListener('hashchange', controlRepice);
+//window.addEventListener('load',controlRepice);
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRepice));
