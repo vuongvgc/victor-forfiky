@@ -7,6 +7,13 @@ export const clearResults = () => {
     elements.searchResList.innerHTML = ' ';
     elements.searchResPage.innerHTML = ' ';
 }
+export const hightlightSelected = id => {
+    const resultsArray = Array.from(document.querySelectorAll('.results__link'));
+    resultsArray.forEach(el => {
+        el.classList.remove('results__link--active');
+    })
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+};
 /*
 1. split word and delete ' '
 2. so sanh > 17 then lay 17 

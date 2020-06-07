@@ -20,12 +20,13 @@ const controlSearch = async () => {
    // console.log(query);
     if (query) {
         // 2. New search object and add to state
-        state.search = new Search(query);
+            state.search = new Search(query);
         try {
             // 3. Prepare UI for results
             searchView.clearInput();
             searchView.clearResults();
             renderLoader(elements.searchLoader);
+
             // 4. Search for recipes
             await state.search.getResults();
             clearLoader();
@@ -74,6 +75,8 @@ const controlRepice = async () => {
         //1. prepare UI for change
             recipeView.clearResults();
             renderLoader(elements.recipe);
+            // Hightlight active link
+            if(state.search) searchView.hightlightSelected(id);
            
         //2. creat new repice object 
             state.Recipe = new Recipe(id);
