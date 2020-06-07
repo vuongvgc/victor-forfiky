@@ -105,4 +105,19 @@ export const renderRecipe = recipe => {
     </div>
     `;
     elements.recipe.insertAdjacentHTML('afterbegin',markUp);
+};
+export const updateServingsIngredients = recipe => {
+    // update servings
+    document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+    // update ingredient
+    // lay cac gia tri count ra luon . all ingredients ra thanh tung array
+    const CountElements = Array.from(document.querySelectorAll('.recipe__count'));
+    console.log(CountElements);
+
+    CountElements.forEach((el, i) => {
+        // ingredients.count them i vo vong lap cho du so ingredient * count do chinh la data 
+        // them format de cho dung format vaf * count
+        el.textContent = formatCount(recipe.ingredients[i].count);
+    });
+
 }
