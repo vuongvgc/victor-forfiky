@@ -12,7 +12,7 @@ export const elements = {
     //4. Renderreload
     searchLoader: document.querySelector('.results'),
     searchResPage: document.querySelector('.results__pages'),
-    viewRecipe: document.querySelector('.recipe')
+    recipe: document.querySelector('.recipe')
 }
 export const renderLoader = parent => {
     const loader = `

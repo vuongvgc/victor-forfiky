@@ -73,6 +73,8 @@ const controlRepice = async () => {
     if (id) {
         //1. prepare UI for change
             recipeView.clearResults();
+            renderLoader(elements.recipe);
+           
         //2. creat new repice object 
             state.Recipe = new Recipe(id);
         //3. get recipe data and parseingredient
@@ -85,6 +87,7 @@ const controlRepice = async () => {
             state.Recipe.calcServings();
 
         //5. Render Recipe
+            clearLoader();
             await recipeView.renderRecipe(state.Recipe);
             console.log(state.Recipe);
         }
