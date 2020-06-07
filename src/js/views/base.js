@@ -11,7 +11,8 @@ export const elements = {
     searchResLink: document.querySelector('.results__link'),
     //4. Renderreload
     searchLoader: document.querySelector('.results'),
-    searchResPage: document.querySelector('.results__pages')
+    searchResPage: document.querySelector('.results__pages'),
+    viewRecipe: document.querySelector('.recipe')
 }
 export const renderLoader = parent => {
     const loader = `

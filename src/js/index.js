@@ -2,6 +2,7 @@ import Search from './models/Search';
 import Recipe from './models/Recipe';
 import {elements, renderLoader, clearLoader, renderResults, searchResPage, searchResLink} from './views/base';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeview';
 /** Global state of the app
  * - Search object
  * - Current recipe object
@@ -71,7 +72,7 @@ const controlRepice = async () => {
     //id = 47746;
     if (id) {
         //1. prepare UI for change
-
+            recipeView.clearResults();
         //2. creat new repice object 
             state.Recipe = new Recipe(id);
         //3. get recipe data and parseingredient
@@ -84,6 +85,7 @@ const controlRepice = async () => {
             state.Recipe.calcServings();
 
         //5. Render Recipe
+            await recipeView.renderRecipe(state.Recipe);
             console.log(state.Recipe);
         }
         catch(err){
