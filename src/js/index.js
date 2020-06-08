@@ -126,9 +126,19 @@ const controlList = () => {
 elements.shopping.addEventListener('click', e => {
     const id = e.target.closest('.shopping__item').dataset.itemid;
     //handle delete item
-    state.List.deleteItem(id);
+    if(e.target.matches('.shopping__delete, .shopping__delete *')) {
+        state.List.deleteItem(id);
+        //console.log('btn delele')
     // prepare UI after deleteItme
-    listView.deleteItem(id);
+        listView.deleteItem(id);
+    }
+    else if (e.target.matches('.shopping__count, .shopping__count *')) {
+        // Handle update count
+        const val = parseFloat(e.target.value, 10);
+        state.List.updateCount(id, val);
+    }
+    
+
 });
 
 
@@ -151,7 +161,8 @@ elements.recipe.addEventListener('click', e => {
         controlList();
     }
     //console.log(state.Recipe)
-    else if (e.target.matches('.recipe__btn--add, .recipe__btn-add *')) {
+    // I modify matches by closet for add shopping list  button
+    else if (e.target.closest('.recipe__btn--add, .recipe__btn-add *')) {
         //console.log('btn shopping list');
         controlList();
 

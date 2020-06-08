@@ -18,7 +18,7 @@ elements.shopping.insertAdjacentHTML('beforeend', markup);
 };
 export const deleteItem = id => {
     const item = document.querySelector(`[data-itemid = "${id}"]`);
-    console.log('delete btm')
+    //console.log('delete btm')
     if(item) item.parentElement.removeChild(item);
     
 };
