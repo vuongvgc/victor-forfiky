@@ -4,6 +4,8 @@ import List from './models/List';
 import {elements, renderLoader, clearLoader, renderResults, searchResPage, searchResLink} from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeview';
+import * as listView from './views/Listview';
+
 /** Global state of the app
  * - Search object
  * - Current recipe object
@@ -120,4 +122,8 @@ elements.recipe.addEventListener('click', e => {
     }
     console.log(state.Recipe)
 });
+// Test 
 window.l = new List();
+/** 
+ * Listshopping CONTROLLER
+ **/
