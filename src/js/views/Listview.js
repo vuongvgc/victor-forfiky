@@ -7,13 +7,18 @@ export const renderItem = item => {
             <p>${item.unit}</p>
         </div>
         <p class="shopping__description">${item.ingredient}</p>
-        <button class="shopping__delete btn-tiny">
+        <button class="shopping__delete btn-tiny"> 
             <svg>
                 <use href="img/icons.svg#icon-circle-with-cross"></use>
             </svg>
         </button>
     </li>
     `;
+    // snake_case ; // const: Snake_Case
+    // camelCase; variable, function, class, obj
+    // PascalCase;
+    // kebal-case; folder , img, video
+    //https://medium.com/better-programming/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841
 elements.shopping.insertAdjacentHTML('beforeend', markup);
 };
 export const deleteItem = id => {

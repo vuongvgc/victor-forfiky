@@ -1,3 +1,4 @@
+// find default as Search
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
@@ -42,7 +43,7 @@ const controlSearch = async () => {
             searchView.renderResults(state.search.result);
             
         } catch (err) {
-            alert('Something wrong with the search...');
+            //alert('Something wrong with the search...');
             console.log(err);
         }
     }
@@ -90,18 +91,18 @@ const controlRepice = async () => {
         try {
             await state.Recipe.getRecipe();
             state.Recipe.parseIngredients();
-            console.log(state.Recipe.ingredients);
+           // console.log(state.Recipe.ingredients);
         //4. Calc Serving nanad time
             state.Recipe.calcTime();
             state.Recipe.calcServings();
 
         //5. Render Recipe
             clearLoader();
-            await recipeView.renderRecipe(state.Recipe);
+            recipeView.renderRecipe(state.Recipe);
             console.log(state.Recipe);
         }
         catch(err){
-            alert(`It wrong somthing ${err}`);
+            console.log(`It wrong somthing Control Recipe ${err}`);
         }
             
     }

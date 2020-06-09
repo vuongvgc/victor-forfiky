@@ -23,9 +23,10 @@ export default class List {
         const index = this.items.findIndex(el => el.id === id);
         // remove this item
         this.items.splice(index,1);
+
     }
     updateCount (id, newcount) {
         // find current value by
-        this.items.find(el => el.id === id).count = newcount;
+        this.items.find(el => {return el.id === id}).count = newcount;
     }
 };

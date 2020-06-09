@@ -50,6 +50,7 @@ const renderRecipe = repice => {
     elements.searchResList.insertAdjacentHTML('beforeend',markUp);
 }
 // btn pre next
+//https://developer.mozilla.org/vi/docs/Web/API/HTMLElement/dataset
 const creatButton = (page, type) => 
 `
     <button class="btn-inline results__btn--${type}" data-goto ="${type === 'prev' ? page - 1 : page + 1}">
@@ -84,6 +85,7 @@ const renderButtons = (page, numResults, resPerPage) => {
 export const renderResults = (repices, page = 1, resPerPage = 5) => {
     const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
-    repices.slice(start,end).forEach(renderRecipe);
+    repices.slice(start,end);
+    repices.forEach(renderRecipe);
     renderButtons(page, repices.length, resPerPage); 
 } 

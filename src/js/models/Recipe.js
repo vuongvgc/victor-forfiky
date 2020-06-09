@@ -46,7 +46,7 @@ export default class Recipe {
         const newIngredients = this.ingredients.map( el =>{
             //1. uniform unit
             let ingredient = el.toLowerCase();
-            
+            //console.log(ingredient)
             unitsLong.forEach((unit, i) => {
                 ingredient = ingredient.replace(unit, unitsShort[i]);
             });
