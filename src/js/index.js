@@ -7,6 +7,7 @@ import {elements, renderLoader, clearLoader, renderResults, searchResPage, searc
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeview';
 import * as listView from './views/Listview';
+import * as likeView from './views/likeView';
 
 /** Global state of the app
  * - Search object
@@ -160,6 +161,7 @@ const controlLike = () => {
             state.Recipe.img
         );
         // chagne butoon toggle
+        likeView.toggleLikeBtn(true);
         // display UI
         console.log(state.likes);
     }
@@ -167,6 +169,7 @@ const controlLike = () => {
         // delete to list like
         state.likes.deleteLike(currentID);
         // chagne butoon toggle
+        likeView.toggleLikeBtn(false);
         // display UI
         console.log(state.likes);
     }
