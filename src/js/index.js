@@ -100,7 +100,9 @@ const controlRepice = async () => {
 
         //5. Render Recipe
             clearLoader();
-            recipeView.renderRecipe(state.Recipe);
+            recipeView.renderRecipe(
+                state.Recipe,
+                state.likes.isLike(id));
             console.log(state.Recipe);
         }
         catch(err){
@@ -146,6 +148,9 @@ elements.shopping.addEventListener('click', e => {
 /** 
  * Like CONTROLLER
  **/
+// Test
+state.likes = new Like(); 
+//Test
 const controlLike = () => {
     //check state have likes array ?
     if(!state.likes) state.likes = new Like();
