@@ -150,6 +150,7 @@ elements.shopping.addEventListener('click', e => {
  **/
 // Test
 state.likes = new Like(); 
+likeView.toggleNumLike(state.likes.getNumLike());
 //Test
 const controlLike = () => {
     //check state have likes array ?
@@ -178,6 +179,8 @@ const controlLike = () => {
         // display UI
         console.log(state.likes);
     }
+    likeView.toggleNumLike(state.likes.getNumLike());
+   
 };
 //window.addEventListener('hashchange', controlRepice);
 //window.addEventListener('load',controlRepice);

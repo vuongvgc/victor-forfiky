@@ -13,7 +13,8 @@ export const elements = {
     searchLoader: document.querySelector('.results'),
     searchResPage: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
-    shopping: document.querySelector('.shopping__list')
+    shopping: document.querySelector('.shopping__list'),
+    iconLikeMenu: document.querySelector('.likes__field')
 }
 export const renderLoader = parent => {
     const loader = `
