@@ -2,6 +2,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
+import Like from './models/Like';
 import {elements, renderLoader, clearLoader, renderResults, searchResPage, searchResLink} from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeview';
@@ -141,8 +142,35 @@ elements.shopping.addEventListener('click', e => {
     
 
 });
-
-
+/** 
+ * Like CONTROLLER
+ **/
+const controlLike = () => {
+    //check state have likes array ?
+    if(!state.likes) state.likes = new Like();
+    //give ID curren
+    const currentID = state.Recipe.id;
+    // check item have or not like
+    if(!state.likes.isLike(currentID)){
+        // add to list like
+        state.likes.addLike(
+            currentID,
+            state.Recipe.title,
+            state.Recipe.author,
+            state.Recipe.img
+        );
+        // chagne butoon toggle
+        // display UI
+        console.log(state.likes);
+    }
+    else {
+        // delete to list like
+        state.likes.deleteLike(currentID);
+        // chagne butoon toggle
+        // display UI
+        console.log(state.likes);
+    }
+};
 //window.addEventListener('hashchange', controlRepice);
 //window.addEventListener('load',controlRepice);
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRepice));
@@ -166,6 +194,9 @@ elements.recipe.addEventListener('click', e => {
     else if (e.target.closest('.recipe__btn--add, .recipe__btn-add *')) {
         //console.log('btn shopping list');
         controlList();
-
+    }
+    else if(e.target.closest('.recipe__love, .recipe__love *')) {
+        // add event to add like list
+        controlLike();
     }
 });
