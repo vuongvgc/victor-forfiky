@@ -28,6 +28,10 @@ export const renderLike = like => {
         </a>
         </li>
     `;
-    console.log(like);
-    elements.listLikeMenu.insertAdjacentHTML("afterbegin",markUp);
+    elements.listLikeMenu.insertAdjacentHTML("beforeend",markUp);
+}
+export const deleteLike = id => {
+    const  el = document.querySelector(`.likes__link[href="#${id}"]`).parentElement;
+    if(el) el.parentElement.removeChild(el);
+
 }

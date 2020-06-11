@@ -162,7 +162,7 @@ const controlLike = () => {
     // check item have or not like
     if(!state.likes.isLike(currentID)){
         // add to list like
-        state.likes.addLike(
+        const newLike = state.likes.addLike(
             currentID,
             state.Recipe.title,
             state.Recipe.author,
@@ -172,6 +172,7 @@ const controlLike = () => {
         likeView.toggleLikeBtn(true);
         // display UI
         console.log(state.likes);
+        likeView.renderLike(newLike);
     }
     else {
         // delete to list like
@@ -180,6 +181,7 @@ const controlLike = () => {
         likeView.toggleLikeBtn(false);
         // display UI
         console.log(state.likes);
+        likeView.deleteLike(currentID);
     }
     likeView.toggleNumLike(state.likes.getNumLike());
    
