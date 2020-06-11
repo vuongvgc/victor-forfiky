@@ -150,7 +150,9 @@ elements.shopping.addEventListener('click', e => {
  **/
 // Test
 state.likes = new Like(); 
+//console.log(state.likes);
 likeView.toggleNumLike(state.likes.getNumLike());
+//document.addEventListener('click', likeView.renderLike(state.likes));
 //Test
 const controlLike = () => {
     //check state have likes array ?

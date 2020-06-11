@@ -14,7 +14,8 @@ export const elements = {
     searchResPage: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
     shopping: document.querySelector('.shopping__list'),
-    iconLikeMenu: document.querySelector('.likes__field')
+    iconLikeMenu: document.querySelector('.likes__field'),
+    listLikeMenu: document.querySelector('.likes__panel')
 }
 export const renderLoader = parent => {
     const loader = `
