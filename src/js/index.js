@@ -148,12 +148,6 @@ elements.shopping.addEventListener('click', e => {
 /** 
  * Like CONTROLLER
  **/
-// Test
-state.likes = new Like(); 
-//console.log(state.likes);
-likeView.toggleNumLike(state.likes.getNumLike());
-//document.addEventListener('click', likeView.renderLike(state.likes));
-//Test
 const controlLike = () => {
     //check state have likes array ?
     if(!state.likes) state.likes = new Like();
@@ -186,6 +180,17 @@ const controlLike = () => {
     likeView.toggleNumLike(state.likes.getNumLike());
    
 };
+// add load brower
+window.addEventListener('load', () => {
+    state.likes = new Like(); 
+    // Restore Like
+    state.likes.readLocalStorage();
+    // toggle like menu button
+    likeView.toggleNumLike(state.likes.getNumLike());
+    //render exiting like
+    state.likes.likes.forEach(like => likeView.renderLike(like))
+
+});
 //window.addEventListener('hashchange', controlRepice);
 //window.addEventListener('load',controlRepice);
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRepice));
