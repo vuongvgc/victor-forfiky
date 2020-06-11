@@ -1,4 +1,5 @@
 import {elements} from './base';
+import {limitRecipeTitle} from './searchView';
 export const toggleLikeBtn = (isLiked) => {
     /*
     <button class="recipe__love">
@@ -17,12 +18,12 @@ export const toggleNumLike = numLike => {
 export const renderLike = like => {
     const markUp = `
         <li>
-        <a class="likes__link" href="${like.id}">
+        <a class="likes__link" href="#${like.id}">
             <figure class="likes__fig">
                 <img src="${like.img}" alt="Test">
             </figure>
             <div class="likes__data">
-                <h4 class="likes__name">${like.title}</h4>
+                <h4 class="likes__name">${limitRecipeTitle(like.title)}</h4>
                 <p class="likes__author">${like.author}</p>
             </div>
         </a>
