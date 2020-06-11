@@ -7,79 +7,68 @@ import {elements, renderLoader, clearLoader, renderResults, searchResPage, searc
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeview';
 import * as listView from './views/Listview';
-import * as likeView from './views/likeView';
-
-/** Global state of the app
+import * as likeView from './views/likeView'
+/**Global state of the app
  * - Search object
  * - Current recipe object
  * - Shopping list object
  * - Liked recipes
  */
 const state = {};
-window.state = state;
-
 /** 
  * SEARCH CONTROLLER
  */
 const controlSearch = async () => {
     // 1. Get query from view
     const query = searchView.getInput();
-   // console.log(query);
     if (query) {
-        // 2. New search object and add to state
+            // 2. New search object and add to state
             state.search = new Search(query);
         try {
             // 3. Prepare UI for results
             searchView.clearInput();
             searchView.clearResults();
             renderLoader(elements.searchLoader);
-
             // 4. Search for recipes
             await state.search.getResults();
             clearLoader();
-    
             // 5. Render results on UI
-            // console.log(state.search.result);
-            //const result = state.search.result;
-            //console.log(state.search.result);
-            searchView.renderResults(state.search.result);
-            
+            searchView.renderResults(state.search.result);  
         } catch (err) {
-            //alert('Something wrong with the search...');
-            console.log(err);
+            console.log(`Search controller has some wrong ${err}`);
         }
     }
 }
+// when submit from
 elements.searchForm.addEventListener('submit', e => {
-    e.preventDefault();
+    // prevent form submitting a form: 
+    // ex: when form is empty cant not search
+     e.preventDefault();
+    // search a query
     controlSearch();
-})
-//TEST
-
+});
+// when click btn
 elements.searchResPage.addEventListener('click',e =>{
+    // closest method traverese the element and its parent
+    // until it finds a node that matches the provided selector string. 
+    // Will return itself or the matching ancestor 
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
     const btn = e.target.closest('.btn-inline');
     if(btn) {
+        // Clear list search result
         searchView.clearResults();
+        // control button page
         const goToPage = parseInt(btn.dataset.goto, 10);
+        // render result ffolow page
         searchView.renderResults(state.search.result, goToPage);
-       // console.log(goToPage);
     }
 });
-
-
-
-
 /** 
  * Recipe CONTROLLER
  */
-/*
-const r = new Recipe(47746);
-r.getRecipe();
-console.log(r);
-*/
 const controlRepice = async () => {
+    // give id when you chosse in screen 
     const id = window.location.hash.replace('#', '');
-    //id = 47746;
     if (id) {
         //1. prepare UI for change
             recipeView.clearResults();
@@ -93,11 +82,9 @@ const controlRepice = async () => {
         try {
             await state.Recipe.getRecipe();
             state.Recipe.parseIngredients();
-           // console.log(state.Recipe.ingredients);
-        //4. Calc Serving nanad time
+        //4. Calc Serving and time
             state.Recipe.calcTime();
             state.Recipe.calcServings();
-
         //5. Render Recipe
             clearLoader();
             recipeView.renderRecipe(
@@ -111,39 +98,33 @@ const controlRepice = async () => {
             
     }
 };
-
-
-
 /** 
  * Listshopping CONTROLLER
  **/
 const controlList = () => {
     // creat new list if there is not list
     if(!state.List) state.List = new List();
-    state.Recipe.ingredients.forEach(el => {
+        //1. give each ingredients and UI
+        state.Recipe.ingredients.forEach(el => {
         const item = state.List.addItem(el.count, el.unit, el.ingredient);
         listView.renderItem(item);
     })
 };
-
-
 //Handle delete and update list item event
 elements.shopping.addEventListener('click', e => {
+    // choose id of item
     const id = e.target.closest('.shopping__item').dataset.itemid;
     //handle delete item
     if(e.target.matches('.shopping__delete, .shopping__delete *')) {
         state.List.deleteItem(id);
-        //console.log('btn delele')
     // prepare UI after deleteItme
         listView.deleteItem(id);
     }
     else if (e.target.matches('.shopping__count, .shopping__count *')) {
-        // Handle update count
+    // Handle update count
         const val = parseFloat(e.target.value, 10);
         state.List.updateCount(id, val);
     }
-    
-
 });
 /** 
  * Like CONTROLLER
@@ -151,7 +132,7 @@ elements.shopping.addEventListener('click', e => {
 const controlLike = () => {
     //check state have likes array ?
     if(!state.likes) state.likes = new Like();
-    //give ID curren
+    //give ID current
     const currentID = state.Recipe.id;
     // check item have or not like
     if(!state.likes.isLike(currentID)){
@@ -162,19 +143,17 @@ const controlLike = () => {
             state.Recipe.author,
             state.Recipe.img
         );
-        // chagne butoon toggle
+        // change buttom toggle
         likeView.toggleLikeBtn(true);
-        // display UI
-        console.log(state.likes);
+        // update UI
         likeView.renderLike(newLike);
     }
     else {
         // delete to list like
         state.likes.deleteLike(currentID);
-        // chagne butoon toggle
+        // change butoon toggle
         likeView.toggleLikeBtn(false);
         // display UI
-        console.log(state.likes);
         likeView.deleteLike(currentID);
     }
     likeView.toggleNumLike(state.likes.getNumLike());
